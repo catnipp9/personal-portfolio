@@ -93,8 +93,6 @@ export const NavBar = () => {
                 <div className="flex items-center justify-between h-16 w-full">
                     <div className="flex-shrink-0">
                         <a href="#home" onClick={(e) => { e.preventDefault(); onUpdateActiveLink('home'); }} className="navbar-brand">
-                            {/* Using Next/Image for the logo */}
-                            {/* Adjust width and height as per your logo's aspect ratio and desired display size */}
                             <Image src={logoAsset} alt="Logo" width={120} height={32} style={{ height: '2rem', width: 'auto' }} />
                         </a>
                     </div>
@@ -116,17 +114,15 @@ export const NavBar = () => {
                     </div>
                     <div className="flex items-center flex-shrink-0">
                         <div className="hidden md:flex navbar-text items-center">
+                            {/* MODIFIED: Added specific classes for each social icon link */}
                             <div className="social-icon inline-block"> 
-                                <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                    {/* Social Icon 1 - width/height approx 40% of 42px = 17px */}
+                                <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-facebook">
                                     <Image src={navIcon1Asset} alt="Facebook" width={17} height={17} />
                                 </a>
-                                <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                    {/* Social Icon 2 */}
+                                <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-linkedin">
                                     <Image src={navIcon2Asset} alt="LinkedIn" width={17} height={17} />
                                 </a>
-                                <a href={socialLinks.email} aria-label="Email">
-                                    {/* Social Icon 3 */}
+                                <a href={socialLinks.email} aria-label="Email" className="social-gmail">
                                     <Image src={navIcon3Asset} alt="Email" width={17} height={17} />
                                 </a>
                             </div>
@@ -167,15 +163,16 @@ export const NavBar = () => {
                             </li>
                         ))}
                     </ul>
+                    {/* MODIFIED: Added specific classes for each social icon link in mobile view */}
                     <div className="navbar-text flex justify-center items-center mt-3 pt-3 border-t border-gray-600">
                         <div className="social-icon inline-block">
-                             <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                             <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-facebook">
                                 <Image src={navIcon1Asset} alt="Facebook" width={17} height={17} />
                             </a>
-                            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-linkedin">
                                 <Image src={navIcon2Asset} alt="LinkedIn" width={17} height={17} />
                             </a>
-                            <a href={socialLinks.email} aria-label="Email">
+                            <a href={socialLinks.email} aria-label="Email" className="social-gmail">
                                 <Image src={navIcon3Asset} alt="Email" width={17} height={17} />
                             </a>
                         </div>

@@ -1,8 +1,8 @@
 "use client"; 
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image'; // Import Next.js Image component
-import profilePicAsset from '@/app/assets/img/profile-pic2.png'; // Renamed to avoid conflict, ensure this path is correct
+import Image from 'next/image'; 
+import profilePicAsset from '@/app/assets/img/profile-pic2.png';
 
 export const Banner = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,7 +27,6 @@ export const Banner = () => {
               `}
             >
               <h1>
-                {/* Escaped apostrophe */}
                 {`Hi!, I'm `} 
                 <a href="#about" className="banner-name-link" onClick={(e) => {
                   e.preventDefault();
@@ -67,18 +66,13 @@ export const Banner = () => {
           <div 
             className="col-xs-12 col-md-5 col-xl-5 banner-image-right text-center text-md-end"
           >
-            {/* Using Next/Image for the profile picture */}
-            {/* You'll need to provide appropriate width and height.
-                These values are placeholders; adjust them to your image's aspect ratio and desired display size.
-                Or, use `fill` prop and style the parent container if you want it to be responsive and fill its container.
-            */}
             <Image 
               src={profilePicAsset} 
               alt="Jamel P. Hadjirasul - Profile Picture" 
-              className="profile-picture-banner" // This class might control size if not using width/height explicitly
-              width={400} // Placeholder: Adjust
-              height={400} // Placeholder: Adjust
-              priority // Add priority if this is your LCP image
+              className="profile-picture-banner" 
+              width={400} 
+              height={400} 
+              priority 
             />
           </div>
         </div>
