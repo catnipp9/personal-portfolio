@@ -1,11 +1,13 @@
 "use client"; 
 
 import React, { useState, useEffect } from "react";
+import Image from 'next/image'; // Import Next.js Image component
+
 // Assuming image imports are correctly resolved by your project's build system
-import logo from '../assets/img/logo.svg'; 
-import navIcon1 from '../assets/img/nav-icon1.svg';
-import navIcon2 from '../assets/img/nav-icon2.png'; 
-import navIcon3 from '../assets/img/nav-icon3.svg';
+import logoAsset from '../assets/img/logo.svg'; // Renamed to avoid conflict with logo const
+import navIcon1Asset from '../assets/img/nav-icon1.svg';
+import navIcon2Asset from '../assets/img/nav-icon2.png';
+import navIcon3Asset from '../assets/img/nav-icon3.svg';
 
 // Define sectionIds outside the component so it's not recreated on every render.
 const sectionIds = ['home', 'about', 'skills', 'projects'];
@@ -13,7 +15,7 @@ const sectionIds = ['home', 'about', 'skills', 'projects'];
 export const NavBar = () => {
     const [activeLink, setActiveLink] = useState('home');
     const [scrolled, setScrolled] = useState(false);
-    const [isTogglerActive, setIsTogglerActive] = useState(false); // State for mobile navbar toggle
+    const [isTogglerActive, setIsTogglerActive] = useState(false); 
 
     const socialLinks = {
         facebook: "https://www.facebook.com/jamel.hadjirasul80", 
@@ -21,19 +23,16 @@ export const NavBar = () => {
         email: "mailto:hadjirasuljamel80@gmail.com"
     };
 
-    // Effect for handling scroll to change navbar style and active link
     useEffect(() => {
         const navbarOffset = 75; 
 
         const handleScroll = () => {
-            // Navbar background state
             if (window.scrollY > 50) {
                 setScrolled(true);
             } else {
                 setScrolled(false);
             }
 
-            // Active link state
             const scrollPositionWithOffset = window.scrollY + navbarOffset + 20; 
             
             let currentActiveSection = '';
@@ -89,14 +88,14 @@ export const NavBar = () => {
     const navLinkClasses = "nav-link navbar-link"; 
 
     return (
-        // Main navbar container
-        // MODIFIED: Removed explicit bg-color from 'scrolled' state to allow CSS to handle it.
         <nav className={`navbar fixed w-full top-0 z-[9999] transition-all duration-300 ease-in-out ${scrolled ? "scrolled py-0" : "py-[18px]"}`}>
             <div className="container-fluid mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 w-full">
                     <div className="flex-shrink-0">
                         <a href="#home" onClick={(e) => { e.preventDefault(); onUpdateActiveLink('home'); }} className="navbar-brand">
-                            <img className="h-8 w-auto" src={logo.src} alt="Logo" />
+                            {/* Using Next/Image for the logo */}
+                            {/* Adjust width and height as per your logo's aspect ratio and desired display size */}
+                            <Image src={logoAsset} alt="Logo" width={120} height={32} style={{ height: '2rem', width: 'auto' }} />
                         </a>
                     </div>
                     <div className="hidden md:flex flex-grow justify-center items-center">
@@ -119,13 +118,16 @@ export const NavBar = () => {
                         <div className="hidden md:flex navbar-text items-center">
                             <div className="social-icon inline-block"> 
                                 <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                    <img src={navIcon1.src} alt="Facebook" />
+                                    {/* Social Icon 1 - width/height approx 40% of 42px = 17px */}
+                                    <Image src={navIcon1Asset} alt="Facebook" width={17} height={17} />
                                 </a>
                                 <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                    <img src={navIcon2.src} alt="LinkedIn" />
+                                    {/* Social Icon 2 */}
+                                    <Image src={navIcon2Asset} alt="LinkedIn" width={17} height={17} />
                                 </a>
                                 <a href={socialLinks.email} aria-label="Email">
-                                    <img src={navIcon3.src} alt="Email" />
+                                    {/* Social Icon 3 */}
+                                    <Image src={navIcon3Asset} alt="Email" width={17} height={17} />
                                 </a>
                             </div>
                         </div>
@@ -147,8 +149,6 @@ export const NavBar = () => {
                         </div>
                     </div>
                 </div>
-                {/* Collapsible Mobile Menu Area */}
-                {/* MODIFIED: Changed background color to bg-[#505773] for mobile active state */}
                 <div 
                     className={`md:hidden ${isTogglerActive ? 'block' : 'hidden'} w-full pt-4 pb-3 border-t border-gray-700 bg-[#505773]`} 
                     id="navbarSupportedContent"
@@ -170,13 +170,13 @@ export const NavBar = () => {
                     <div className="navbar-text flex justify-center items-center mt-3 pt-3 border-t border-gray-600">
                         <div className="social-icon inline-block">
                              <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                <img src={navIcon1.src} alt="Facebook" />
+                                <Image src={navIcon1Asset} alt="Facebook" width={17} height={17} />
                             </a>
                             <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                <img src={navIcon2.src} alt="LinkedIn" />
+                                <Image src={navIcon2Asset} alt="LinkedIn" width={17} height={17} />
                             </a>
                             <a href={socialLinks.email} aria-label="Email">
-                                <img src={navIcon3.src} alt="Email" />
+                                <Image src={navIcon3Asset} alt="Email" width={17} height={17} />
                             </a>
                         </div>
                     </div>
