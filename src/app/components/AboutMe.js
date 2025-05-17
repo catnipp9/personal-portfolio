@@ -4,9 +4,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 // Assuming these assets are correctly pathed in your Next.js project
-import placeholder1Asset from '@/app/assets/img/placeholder1.jpeg';
-import placeholder2Asset from '@/app/assets/img/placeholder2.jpeg';
-import placeholder3Asset from '@/app/assets/img/placeholder3.jpeg';
+import placeholder1Asset from '@/app/assets/img/adventurecat.jpeg';
+import placeholder2Asset from '@/app/assets/img/bowcat.jpg';
+import placeholder3Asset from '@/app/assets/img/questcat.jpg';
 
 export const AboutMe = () => {
   const resumeUrl = '/resume/Hadjirasul - Resume.pdf'; // Ensure this path is correct

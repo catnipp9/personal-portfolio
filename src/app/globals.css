@@ -516,7 +516,7 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
 .about-me .about-image-col img,
 .about-me .about-image-col .img-fluid {
-  max-width: 40%;
+  max-width: 28%;
   height: auto; 
   border-radius: 8px;
   display: block;
@@ -654,12 +654,8 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
 }
 .creative-text {
-  font-family: 'Press Start 2P', cursive; /* Use the imported font */
-  color: #a7f3d0; /* Example: A light, playful green (Tailwind's emerald-200) - adjust as you like! */
-  /* Optional: Adjust font size if needed, as pixel fonts can appear small */
-  /* font-size: 0.9em; or font-size: 14px; */
-  /* font-weight: normal; /* Pixel fonts usually don't have bold variants, so bold might not work or look good */
-  /* text-shadow: 1px 1px 0px #333; */ /* Optional: for a bit of depth, common with pixel fonts */
+  font-family: 'Press Start 2P', cursive; 
+  color: #a7f3d0; 
 }
 
 /************ Skills Css ************/
