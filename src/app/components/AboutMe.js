@@ -98,8 +98,8 @@ export const AboutMe = () => {
         <div className="col-md-6 about-text-col d-flex flex-column justify-content-center order-2 order-md-1">
           <h3>My Superpowers &amp; Gadgets</h3>
           <p>
-            My utility belt is packed with skills in <span className="creative-text">full-stack wizardry</span>, <span className="creative-text">UI/UX enchantments</span>, and <span className="creative-text">cloud sorcery</span>, and I'm a <span className="creative-text">master of artifacts</span> like React, Node.js, and Git.
-            As a team player in any fellowship, I enjoy turning complex challenges into user-friendly, super-charged applications by understanding the <span className="creative-text">ancient 'why'</span> of each feature.
+            My utility belt is packed with skills in <span className="creative-text">full-stack wizardry</span>, <span className="creative-text">UI/UX enchantments</span>, and <span className="creative-text">cloud sorcery</span>, and I&apos;m a <span className="creative-text">master of artifacts</span> like React, Node.js, and Git.
+            As a team player in any fellowship, I enjoy turning complex challenges into user-friendly, super-charged applications by understanding the <span className="creative-text">ancient &apos;why&apos;</span> of each feature.
           </p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export const AboutMe = () => {
         <div className="col-md-6 about-text-col d-flex flex-column justify-content-center order-2 order-md-2">
           <h3>The Next Quest Log</h3>
           <p>
-            I'm eager to level up my expertise in the <span className="creative-text">ancient arts of AI</span> and building <span className="creative-text">interdimensional scalable systems</span> and join <span className="creative-text">crusades that make a real difference</span>. New challenges that push my limits are always welcome!
+            I&apos;m eager to level up my expertise in the <span className="creative-text">ancient arts of AI</span> and building <span className="creative-text">interdimensional scalable systems</span> and join <span className="creative-text">crusades that make a real difference</span>. New challenges that push my limits are always welcome!
             My <span className="creative-text">ultimate legendary quest</span> is to <span className="creative-text">lead a guild of master crafters</span> in software development, all while <span className="creative-text">collecting new powerful technologies</span>.
           </p>
         </div>
