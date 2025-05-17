@@ -1,107 +1,100 @@
+// src/app/components/Projects.js
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image'; 
+import Image from 'next/image'; // Correct import for next/image
+import ProjectDetailModal from './ProjectDetailModal'; // Assuming this path is correct
 
-import placeholder1Asset from '@/app/assets/img/placeholder1.jpeg'; 
-import placeholder2Asset from '@/app/assets/img/placeholder2.jpeg';
-import placeholder3Asset from '@/app/assets/img/placeholder3.jpeg';
+// --- IMPORT STATIC IMAGE ASSETS ---
+// Adjust these paths based on the actual location of your images relative to this Projects.js file.
+// If Projects.js is in 'app/components/' and your images are in 'app/assets/img/':
+import placeholder1Asset from '../assets/img/OptiCareLogo.png';
+import placeholder2Asset from '../assets/img/MentorMatchLogo.jpeg';
+import placeholder3Asset from '../assets/img/logo.png';
+// If you have path aliases (e.g., @/assets/*), you can use them:
+// import placeholder1Asset from '@/assets/img/placeholder1.jpeg';
 
 const projectData = [
   {
     id: 1,
-    title: "OptiCare", 
+    title: "OptiCare",
     description: "A centralized web application designed for optometry clinics to simplify patient record management and appointment scheduling.",
-    imageUrl: placeholder1Asset, 
-    tags: ["Next.js", "Tailwind CSS", "Web App", "JavaScript", "Firebase"],
-    projectLink: "#", 
-    repoLink: "#" 
+    imageUrl: placeholder1Asset,
+    role: "Full Stack Developer", // Added role
+    tags: ["Next.js", "Tailwind CSS", "Web App", "JavaScript", "Firebase", "UI/UX"],
+    projectLink: "https://danledan.vercel.app/",
+    repoLink: "https://github.com/SeesonLau/danledan",
+    fullDescription: "OptiCare is a web-based platform built with Next.js and Firebase, designed to help optometry clinics manage patient records, appointments, and treatments efficiently. It features a clean UI using Tailwind CSS and supports role-based access for patients, clinics, and optometrists."
   },
   {
     id: 2,
     title: "MentorMatch",
     description: "A mobile app that connects students with mentors, while also allowing qualified individuals to apply and offer mentorship.",
-    imageUrl: placeholder2Asset, 
-    tags: [".NET MAUI", "C#", "Mobile App", "Microsoft Azure SQL"], 
-    projectLink: "#",
-    repoLink: "#"
+    imageUrl: placeholder2Asset,
+    role: "Full Stack Developer", // Added role
+    tags: [".NET MAUI", "C#", "Mobile App", "Microsoft Azure SQL", "XAML"],
+    projectLink: "#", // Add project link if available
+    repoLink: "https://github.com/SeesonLau/ProjectMentorMatch",
+    fullDescription: "MentorMatch is a mobile app built with .NET MAUI that connects students with mentors. Users can sign up as mentees or apply as mentors, with features for matching, communication, and session tracking. It uses Azure SQL for data management and offers a clean, responsive UI built in XAML."
   },
   {
-    id: 3,
-    title: "Personal Portfolio Website", 
-    description: "The very website you are browsing now! Designed to showcase my skills, projects, and journey as a developer.",
-    imageUrl: placeholder3Asset, 
-    tags: ["Next.js", "Tailwind CSS", "Portfolio", "UI/UX"], 
-    projectLink: "#",
-    repoLink: "#"
-  }
+  id: 3,
+  title: "Personal Portfolio Website",
+  description: "The very website you are browsing now! Designed to showcase my skills, projects, and journey as a developer.",
+  imageUrl: placeholder3Asset, // Or your actual image asset for the portfolio
+  role: "Solo Developer & Designer",
+  tags: ["Next.js", "Tailwind CSS", "Portfolio", "UI/UX", "Vercel", "Nodemailer"],
+  projectLink: "https://jamelh.vercel.app/", // <<< Your live portfolio URL
+  repoLink: "https://github.com/catnipp9/my-personal-portfolio", // <<< Your GitHub (or other repo) URL
+  fullDescription: "This portfolio website showcases my work as a software developer. Built with Next.js and Tailwind CSS, it features a responsive design and includes a contact form powered by Nodemailer for direct communication. Deployed on Vercel for smooth performance and easy updates."
+}
 ];
 
-const ProjectCard = ({ project, isVisible, delay }) => {
+const ProjectCard = ({ project, isVisible, delay, onCardClick }) => {
   const animationBase = "transition-all duration-700 ease-out";
   const animationInitial = "opacity-0 translate-y-10 scale-95";
   const animationVisible = "opacity-100 translate-y-0 scale-100";
 
-  const handleCardClick = (e) => {
-    if (e.target.tagName === 'A' || e.target.closest('a')) {
-      return;
-    }
-    console.log(`Card clicked: ${project.title}`);
-    if (project.projectLink && project.projectLink !== "#") {
-      window.open(project.projectLink, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   return (
     <div
-      className={`project-card-custom bg-gray-800 rounded-xl shadow-xl overflow-hidden cursor-pointer
-                  hover:shadow-2xl hover:-translate-y-1.5 
+      className={`project-card-custom group bg-gray-800 rounded-xl shadow-xl overflow-hidden cursor-pointer
+                  hover:shadow-2xl hover:-translate-y-1.5
                   ${animationBase} ${isVisible ? animationVisible : animationInitial}`}
       style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
-      onClick={handleCardClick}
+      onClick={() => onCardClick(project)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onCardClick(project); }}
+      aria-label={`View details for ${project.title}`}
     >
-      <div className="project-image-container relative w-full h-48 sm:h-56">
-        <Image 
+      {/* Added overflow-hidden to the image container */}
+      <div className="project-image-container relative w-full h-48 sm:h-56 overflow-hidden">
+        <Image
           src={project.imageUrl} 
-          alt={project.title} 
-          layout="fill" 
+          alt={`${project.title} project screenshot`} 
+          layout="fill"
           objectFit="cover" 
           className="transition-transform duration-500 group-hover:scale-105"
+          placeholder="blur" 
+          onError={(e) => console.error(`Image error for ${project.title}:`, e.target.src)} // Added onError for debugging
         />
       </div>
-      <div className="project-content p-6 flex flex-col flex-grow">
-        <h3 className="project-title text-2xl font-semibold mb-2 text-white">{project.title}</h3> 
-        <p className="project-description text-gray-300 text-sm mb-4 flex-grow">{project.description}</p>
-        
-        <div className="project-tags-container mb-4">
-          {project.tags.map(tag => (
+      <div className="project-content p-5 sm:p-6 flex flex-col flex-grow">
+        <h3 className="project-title-on-card text-xl sm:text-2xl font-semibold mb-2 text-white">{project.title}</h3>
+        <p className="project-description text-gray-300 text-sm mb-4 flex-grow line-clamp-3 sm:line-clamp-4">
+          {project.description}
+        </p>
+        <div className="project-tags-container mt-auto pt-2">
+          {project.tags.slice(0, 3).map(tag => (
             <span key={tag} className="project-tag">
               {tag}
             </span>
           ))}
-        </div>
-        <div className="project-links mt-auto flex justify-start space-x-3">
-          {project.projectLink && project.projectLink !== "#" && (
-            <a 
-              href={project.projectLink} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="project-link-button text-sm text-cyan-400 hover:text-cyan-300 font-medium py-1.5 px-3 rounded-md bg-gray-600 hover:bg-gray-500 transition-colors duration-200" // Adjusted padding
-              onClick={(e) => e.stopPropagation()}
-            >
-              View Live
-            </a>
-          )}
-          {project.repoLink && project.repoLink !== "#" && (
-            <a 
-              href={project.repoLink} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="project-link-button text-sm text-gray-300 hover:text-white font-medium py-1.5 px-3 rounded-md bg-gray-600 hover:bg-gray-500 transition-colors duration-200" // Adjusted padding
-              onClick={(e) => e.stopPropagation()}
-            >
-              View Code
-            </a>
+          {project.tags.length > 3 && (
+             <span className="project-tag-more">
+                +{project.tags.length - 3} more
+             </span>
           )}
         </div>
       </div>
@@ -109,10 +102,31 @@ const ProjectCard = ({ project, isVisible, delay }) => {
   );
 };
 
-
 export const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+ const handleOpenModal = (project) => {
+    if (!project) {
+      console.error("handleOpenModal called with null project");
+      return;
+    }
+    console.log("Opening modal for:", project.title);
+    setSelectedProject(project);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    // Delay clearing project to allow for fade-out animation
+    setTimeout(() => {
+        setSelectedProject(null);
+    }, 300); // Should match modal's fade-out duration
+    document.body.style.overflow = 'auto'; // Restore background scroll
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -123,55 +137,70 @@ export const Projects = () => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 } 
+      { threshold: 0.1 }
     );
-
     const currentSectionRef = sectionRef.current;
     if (currentSectionRef) {
       observer.observe(currentSectionRef);
     }
+    const handleKeyDown = (event) => {
+        if (event.key === 'Escape' && isModalOpen) { 
+            handleCloseModal();
+        }
+    };
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       if (currentSectionRef) {
         observer.unobserve(currentSectionRef);
       }
       observer.disconnect();
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto'; 
     };
-  }, []);
+  }, [isModalOpen]); // Added isModalOpen to dependency array
 
   const animationBase = "transition-all duration-1000 ease-out";
   const animationInitial = "opacity-0 translate-y-10";
   const animationVisible = "opacity-100 translate-y-0";
 
   return (
-    <section 
-      className="projects-section-custom skills-section-custom bg-gray-900 text-white" 
-      id="projects" 
-      ref={sectionRef}
-    >
-      <div className="container mx-auto px-4">
-        <div
-          className={`text-center mb-12 md:mb-16 ${animationBase} ${
-            isVisible ? animationVisible : animationInitial
-          }`}
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">My Projects</h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            A selection of projects I&apos;ve worked on, showcasing my skills and interests.
-          </p>
+    <>
+      <section
+        className="projects-section-custom skills-section-custom bg-gray-900 text-white py-16 md:py-20"
+        id="projects"
+        ref={sectionRef}
+      >
+        <div className="container mx-auto px-4">
+          <div
+            className={`text-center mb-12 md:mb-16 ${animationBase} ${
+              isVisible ? animationVisible : animationInitial
+            }`}
+          >
+            <h2 className="project-title">My Projects</h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-5">
+              A selection of projects I&apos;ve worked on, showcasing my skills and interests.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            {projectData.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                isVisible={isVisible}
+                delay={index * 150}
+                onCardClick={handleOpenModal}
+              />
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectData.map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              isVisible={isVisible} 
-              delay={index * 200} 
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+      <ProjectDetailModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        project={selectedProject}
+      />
+    </>
   );
 };

@@ -1,59 +1,67 @@
-"use client"; 
+"use client";
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image'; 
+import Image from 'next/image';
 import profilePicAsset from '@/app/assets/img/profile-pic2.png';
 
 export const Banner = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isTextLoaded, setIsTextLoaded] = useState(false); 
+  const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
+    const textTimer = setTimeout(() => {
+      setIsTextLoaded(true);
     }, 100); 
 
-    return () => clearTimeout(timer); 
+    const imageTimer = setTimeout(() => {
+      setIsImageLoaded(true);
+    }, 300);
+
+    return () => {
+      clearTimeout(textTimer);
+      clearTimeout(imageTimer);
+    };
   }, []);
 
   return (
     <section className="banner" id="home">
-      <div className="container h-100"> 
-        <div className="row align-items-center h-100"> 
+      <div className="container h-100">
+        <div className="row align-items-center h-100">
           <div className="col-xs-12 col-md-7 col-xl-7 banner-content-left d-flex flex-column justify-content-center">
-            <div 
+            <div
               className={`
-                transition-all duration-1000 ease-out 
-                ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}
+                transition-all duration-1000 ease-out
+                ${isTextLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}
               `}
             >
               <h1>
-                {`Hi!, I'm `} 
+                {`Hi!, I'm `}
                 <a href="#about" className="banner-name-link" onClick={(e) => {
                   e.preventDefault();
                   const aboutSection = document.getElementById('about');
                   if (aboutSection) {
-                    const navbarOffset = 75; 
+                    const navbarOffset = 75;
                     const elementPosition = aboutSection.getBoundingClientRect().top + window.scrollY - navbarOffset;
                     window.scrollTo({ top: elementPosition, behavior: 'smooth' });
                   }
-                }}> 
+                }}>
                   Jamel Hadjirasul
                 </a>
               </h1>
-              <h2 className="banner-title">Software Developer</h2>
+              <h2 className="banner-title">Computer Engineering Student</h2>
               <p>
-                A driven and detail-oriented Computer Engineering student with a knack for turning caffeine and code into cool, 
+                A driven and detail-oriented Computer Engineering student with a knack for turning caffeine and code into cool,
                 creative solutions—whether it&apos;s building smart systems or just solving life&apos;s little bugs, one line at a time!
               </p>
               <button onClick={() => {
-                  console.log('Contact Me button clicked');
-                  const contactSection = document.getElementById('connect'); 
-                  if (contactSection) {
-                    const navbarOffset = 75; 
-                    const elementPosition = contactSection.getBoundingClientRect().top + window.scrollY - navbarOffset;
-                    window.scrollTo({ top: elementPosition, behavior: 'smooth' });
-                  }
-                }}
+                console.log('Contact Me button clicked');
+                const contactSection = document.getElementById('connect');
+                if (contactSection) {
+                  const navbarOffset = 75;
+                  const elementPosition = contactSection.getBoundingClientRect().top + window.scrollY - navbarOffset;
+                  window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+                }
+              }}
               >
                 Contact Me!
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-right-circle" viewBox="0 0 16 16" style={{ marginLeft: '10px' }}>
@@ -63,16 +71,20 @@ export const Banner = () => {
             </div>
           </div>
 
-          <div 
+          <div
             className="col-xs-12 col-md-5 col-xl-5 banner-image-right text-center text-md-end"
           >
-            <Image 
-              src={profilePicAsset} 
-              alt="Jamel P. Hadjirasul - Profile Picture" 
-              className="profile-picture-banner" 
-              width={400} 
-              height={400} 
-              priority 
+            <Image
+              src={profilePicAsset}
+              alt="Jamel P. Hadjirasul - Profile Picture"
+              className={`
+                profile-picture-banner
+                transition-opacity duration-1000 ease-out  /* Adjusted duration and property */
+                ${isImageLoaded ? 'opacity-100' : 'opacity-0'}
+              `}
+              width={400}
+              height={400}
+              priority
             />
           </div>
         </div>

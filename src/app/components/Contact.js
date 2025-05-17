@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-import contactImagePlaceholder from '@/app/assets/img/placeholder1.jpeg';
+import contactImagePlaceholder from '@/app/assets/img/placeholder4.jpg';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
   --background: #ffffff;
@@ -18,6 +19,7 @@
     --foreground: #ededed;
   }
 }
+
 /************ Custom Font ************/
 @font-face {
 	font-family: Centra;
@@ -112,20 +114,25 @@ nav.navbar {
   transition: 0.32s ease-in-out;
 }
 nav.navbar.scrolled {
-  padding: 0px 0;
-  background-color: #011c27 ; 
+  padding: 8px 0; /* Tailwind py-2 is approx 8px. Match this or manage padding solely with Tailwind. */
+  background-color: #011c27 ;
 }
+
+/* MODIFIED: Ensure the anchor tag can accommodate the image size */
 nav.navbar a.navbar-brand {
-    width: auto; 
+  /* width: auto; /* This is usually fine, but let's ensure display allows content to size it */
+  display: inline-block; /* Helps the anchor wrap its content (the image) */
+  vertical-align: middle; /* Good for inline-block elements if alignment issues arise */
+  /* You can also try display: flex; align-items: center; justify-content: center; */
 }
 
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
-  color: #fff !important; 
+  color: #fff !important;
   letter-spacing: 0.8px;
   padding: 0 25px;
   font-size: 18px;
-  opacity: 0.75; 
+  opacity: 0.75;
   text-decoration: none;
   position: relative;
   transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
@@ -140,17 +147,17 @@ nav.navbar .navbar-nav .nav-link.navbar-link::after {
   margin-top: 5px;
   right: 25px;
   left: 25px;
-  background: #011c27; 
+  background: #011c27;
   transition: width 0.3s ease;
 }
 
-nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link:hover { 
+nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link:hover {
     opacity: 1;
     color: #011c27 !important;
 }
 nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link:hover::after {
     width: calc(100% - 50px);
-    background: #011c27; 
+    background: #011c27;
 }
 nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link.active {
     opacity: 1;
@@ -163,27 +170,27 @@ nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link.active::after {
 }
 
 nav.navbar.scrolled .navbar-nav .nav-link.navbar-link,
-#navbarSupportedContent .navbar-nav .nav-link.navbar-link { 
-  color: #f0f0f0 !important; 
-  opacity: 0.85; 
+#navbarSupportedContent .navbar-nav .nav-link.navbar-link {
+  color: #f0f0f0 !important;
+  opacity: 0.85;
 }
 nav.navbar.scrolled .navbar-nav .nav-link.navbar-link:hover,
 nav.navbar.scrolled .navbar-nav .nav-link.navbar-link.active,
 #navbarSupportedContent .navbar-nav .nav-link.navbar-link:hover,
 #navbarSupportedContent .navbar-nav .nav-link.navbar-link.active {
-  color: #FBE4D8 !important; 
+  color: #FBE4D8 !important;
   opacity: 1;
-  font-weight: 700; 
+  font-weight: 700;
 }
 nav.navbar.scrolled .navbar-nav .nav-link.navbar-link:hover::after,
 nav.navbar.scrolled .navbar-nav .nav-link.navbar-link.active::after,
 #navbarSupportedContent .navbar-nav .nav-link.navbar-link:hover::after,
 #navbarSupportedContent .navbar-nav .nav-link.navbar-link.active::after {
-  background: #FBE4D8; 
+  background: #FBE4D8;
   width: calc(100% - 50px);
 }
 #navbarSupportedContent .navbar-nav .nav-link.navbar-link {
-  padding-top: 8px; 
+  padding-top: 8px;
   padding-bottom: 8px;
 }
 
@@ -193,29 +200,29 @@ span.navbar-text {
 }
 .social-icon {
     display: inline-block;
-    margin-left: 10px; /* Slightly reduced margin */
+    margin-left: 10px;
 }
 .social-icon a {
-    width: 36px;  /* MODIFIED: Reduced from 42px */
-    height: 36px; /* MODIFIED: Reduced from 42px */
-    background: rgba(217, 217, 217, 0.1); 
+    width: 36px;
+    height: 36px;
+    background: rgba(217, 217, 217, 0.1);
     display: inline-flex;
     border-radius: 50%;
-    margin-right: 5px; /* Slightly reduced margin */
+    margin-right: 5px;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    border: 1px solid #011c27; 
-    position: relative; 
+    border: 1px solid #011c27;
+    position: relative;
 }
 nav.navbar.scrolled .social-icon a,
 #navbarSupportedContent .social-icon a {
-  border-color: #aaa; 
-  background: rgba(255, 255, 255, 0.05); 
+  border-color: #aaa;
+  background: rgba(255, 255, 255, 0.05);
 }
-.social-icon a::before { 
+.social-icon a::before {
     content: "";
-    width: 100%; 
+    width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
@@ -223,7 +230,7 @@ nav.navbar.scrolled .social-icon a,
     border-radius: 50%;
     transform: scale(0);
     transition: 0.3s ease-in-out;
-    z-index: 0; 
+    z-index: 0;
 }
 .social-icon a:hover::before {
     transform: scale(1);
@@ -239,14 +246,14 @@ nav.navbar.scrolled .social-icon a,
   background-color: #EA4335; /* Gmail Red */
 }
 
-.social-icon a img { 
-  width: 50%; 
-  height: auto; 
-  z-index: 1; 
+.social-icon a img {
+  width: 50%;
+  height: auto;
+  z-index: 1;
   transition: 0.3s ease-in-out;
 }
 
-.social-icon a:hover img { 
+.social-icon a:hover img {
     filter: brightness(0) invert(1);
 }
 
@@ -256,6 +263,7 @@ nav.navbar.scrolled .social-icon a img {
 #navbarSupportedContent .social-icon a img {
     filter: brightness(0) invert(1);
 }
+
 
 
 /* === Banner CSS === */
@@ -376,9 +384,10 @@ nav.navbar.scrolled .social-icon a img {
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: 10px; 
-  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 10px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 1s ease-out; /* Added opacity here as a fallback or if you remove tailwind for it */
 }
+
 
 .banner .banner-image-right:hover img {
 transform: scale(1.05);
@@ -478,99 +487,66 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 /* === About Me CSS === */
 .about-me {
   background: linear-gradient(to bottom, #1f2937, #111827);
-  color: #f0f0f0; 
+  color: #e2e8f0; 
+  padding-top: 30px; 
+  padding-bottom: 50px; 
   min-height: calc(100vh - 75px); 
-  display: flex; 
+  display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
+  overflow-x: hidden; 
 }
 
-.about-me .container {
-    /* If using display:flex on .about-me, you might not need to force container height */
-}
-
-.about-me .section-title { 
-  font-size: 32px;    
+.about-me .section-title {
+  font-family: 'Centra', sans-serif !important;
+  font-size: 2.5rem;  
   font-weight: 700;
-  color: #DCD7D5; 
-  margin-bottom: 50px; 
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: #e2e8f0;  
+  letter-spacing: 1.5px;
+  margin-bottom: 2rem;
 }
 
 .about-me .about-row {
-  margin-bottom: 20px;
-  align-items: center; 
+  margin-bottom: 40px;
+  align-items: center;
 }
-.about-me .about-row:last-of-type { 
+.about-me .about-row:last-of-type {
   margin-bottom: 25px; 
 }
 
-.about-me .about-image-col img, 
-.about-me .about-image-col .img-fluid { 
-  max-width: 45%; 
-  border-radius: 6px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
-  display: block; 
-  margin-left: auto; 
+.about-me .about-image-col img,
+.about-me .about-image-col .img-fluid {
+  max-width: 40%;
+  height: auto; 
+  border-radius: 8px;
+  display: block;
+  margin-left: auto;
   margin-right: auto;
+  transition: transform 0.3s ease-out;
 }
+
 .about-me .about-image-col img:hover,
 .about-me .about-image-col .img-fluid:hover {
-    transform: scale(1.02); 
+  transform: scale(1.03); 
 }
 
 .about-me .about-text-col {
-  padding-left: 15px;  
-  padding-right: 15px;
-}
-
-@media (max-width: 767px) {
-  .about-me {
-    padding-top: 80px; 
-    padding-bottom: 30px;
-    min-height: 0;
-  }
-  .about-me .section-title {
-    font-size: 28px; 
-    margin-bottom: 20px;
-  }
-  .about-me .about-row {
-    margin-bottom: 20px; 
-    text-align: center; 
-  }
-   .about-me .about-image-col {
-    margin-bottom: 15px; 
-  }
-  .about-me .about-text-col {
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 10px; 
-  }
-  .about-me .about-text-col h3 {
-    font-size: 20px; 
-    margin-bottom: 8px; 
-  }
-  .about-me .about-text-col p {
-    font-size: 14px; 
-    line-height: 1.6em; 
-    margin-bottom: 8px; 
-  }
+  padding-left: 20px;
+  padding-right: 20px; 
 }
 
 .about-me .about-text-col h3 {
-  font-size: 20px;    
+  font-size: 22px;
   font-weight: 600;
-  color: #00D8FF; 
-  margin-bottom: 10px; 
+  color: #FBE4D8;
+  margin-bottom: 15px;
 }
 
 .about-me .about-text-col p {
-  font-size: 15px;    
-  line-height: 1.6em; 
-  color: #DCD7D5; 
-  margin-bottom: 10px; 
+  font-size: 16px; 
+  line-height: 1.7em; 
+  color: #DCD7D5;;
+  margin-bottom: 15px;
 }
 .about-me .about-text-col p:last-child {
   margin-bottom: 0;
@@ -578,56 +554,127 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
 .about-me .resume-button-row {
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 40px; 
 }
 
+
 .about-me .resume-button {
-  font-weight: 600; 
-  color: #121212; 
-  background-color: #00D8FF; 
-  border: 2px solid #00D8FF;
-  padding: 12px 30px; 
-  font-size: 16px;   
-  border-radius: 50px; 
-  transition: all 0.3s ease; 
+  font-weight: 600;
+  color: #FFFFFF; /* Changed text color for better contrast with a darker button */
+  background-color: #007B8A; /* Darker button color */
+  border: 2px solid #007B8A; /* Darker border color */
+  padding: 14px 35px;
+  font-size: 17px;
+  border-radius: 15px; /* Changed for a round rectangular shape */
+  transition: all 0.3s ease;
   text-decoration: none;
-  display: inline-flex; 
-  align-items: center;  
-  justify-content: center; 
-  box-shadow: 0 2px 5px rgba(0, 216, 255, 0.2); 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 123, 138, 0.35); /* Adjusted shadow to match new darker color */
 }
 
 .about-me .resume-button .resume-button-icon {
-  margin-right: 8px; 
-  transition: transform 0.3s ease; 
+  margin-right: 10px;
+  transition: transform 0.3s ease;
 }
 
 .about-me .resume-button:hover {
-  background-color: #00c2e0; 
-  border-color: #00c2e0;
-  color: #000; 
-  transform: translateY(-3px) scale(1.03); 
-  box-shadow: 0 5px 15px rgba(0, 216, 255, 0.4); 
+  background-color: #005F6B; /* Darker hover background color */
+  border-color: #005F6B; /* Darker hover border color */
+  color: #E0E0E0; /* Slightly adjusted hover text color if needed */
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 95, 107, 0.5); /* Adjusted hover shadow to match new darker color */
 }
 
 .about-me .resume-button:hover .resume-button-icon {
-  transform: scale(1.1);
+  transform: scale(1.1) translateX(-2px); /* Icon subtle animation */
 }
 
+/* Responsive Adjustments */
+@media (max-width: 991px) { /* Target tablets and below */
+  .about-me .about-text-col {
+    text-align: center; /* Center text when stacked */
+    margin-top: 20px; /* Add space above text when stacked below image */
+  }
+  .about-me .about-image-col img,
+  .about-me .about-image-col .img-fluid {
+    max-width: 70%; /* Allow image to be a bit larger on tablets */
+  }
+}
+
+
+@media (max-width: 767px) { /* Target mobile devices */
+  .about-me {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    min-height: 0; /* Allow section to shrink on mobile */
+  }
+  .about-me .section-title {
+    font-size: 26px;
+    margin-bottom: 40px;
+  }
+  .about-me .about-row {
+    margin-bottom: 30px;
+    text-align: center; /* Ensure text below image is centered */
+  }
+  .about-me .about-image-col {
+    margin-bottom: 20px; /* Space between image and text when stacked */
+  }
+   .about-me .about-image-col img,
+  .about-me .about-image-col .img-fluid {
+    max-width: 80%; /* Image width on mobile */
+    /* Or use 100% if you want it to span the centered column fully */
+  }
+  .about-me .about-text-col {
+    padding-left: 10px;  /* Reduced padding for mobile */
+    padding-right: 10px; /* Reduced padding for mobile */
+    margin-top: 15px; /* Reset margin-top if image is first */
+  }
+   .about-me .about-row .order-md-2 + .order-md-1 .about-text-col { /* Text column that comes first on mobile due to reordering */
+     margin-top: 0;
+   }
+   .about-me .about-row .order-md-1 + .order-md-2 .about-text-col { /* Text column that comes first on mobile due to reordering */
+     margin-top: 0;
+   }
+
+
+  .about-me .about-text-col h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .about-me .about-text-col p {
+    font-size: 15px;
+    line-height: 1.6em;
+    margin-bottom: 10px;
+  }
+  .about-me .resume-button {
+    font-size: 16px;
+    padding: 12px 30px;
+  }
+}
+.creative-text {
+  font-family: 'Press Start 2P', cursive; /* Use the imported font */
+  color: #a7f3d0; /* Example: A light, playful green (Tailwind's emerald-200) - adjust as you like! */
+  /* Optional: Adjust font size if needed, as pixel fonts can appear small */
+  /* font-size: 0.9em; or font-size: 14px; */
+  /* font-weight: normal; /* Pixel fonts usually don't have bold variants, so bold might not work or look good */
+  /* text-shadow: 1px 1px 0px #333; */ /* Optional: for a bit of depth, common with pixel fonts */
+}
 
 /************ Skills Css ************/
 .skills-section-custom {
   background: linear-gradient(to bottom, #1f2937, #111827);
-  color: #e2e8f0; 
-  min-height: 100vh; 
+  color: #e2e8f0;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px; 
-  padding-bottom: 50px; 
-  width: 100%; 
-  font-family: 'Centra', sans-serif; 
+  padding-top: 50px;
+  padding-bottom: 60px;
+  width: 100%;
+  font-family: 'Centra', sans-serif;
 }
 
 .skills-section-custom .container {
@@ -635,34 +682,46 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   max-width: 1140px;
 }
 
+.skills-section-custom .section-title h2 {
+  font-family: 'Centra', sans-serif !important;
+  font-size: 2.5rem;  
+  font-weight: 700;
+  color: #e2e8f0;  
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+
 .skill-tabs-container {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
+  margin-top: -1.5rem;
   display: flex;
   justify-content: center;
   gap: 1.5rem;
   padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.05); 
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: 0.75rem;
-  max-width: max-content; 
+  max-width: max-content;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .skill-tab-button {
-  padding: 0.5rem 1.25rem; 
-  border-radius: 0.5rem; 
-  font-weight: 500; 
-  transition: all 0.2s ease-in-out; 
-  border: none; 
-  font-size: 0.875rem; 
-  font-family: 'Centra', sans-serif; 
-  line-height: 1.25; 
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.25s ease-in-out;
+  border: none;
+  font-size: 0.9rem;
+  font-family: 'Centra', sans-serif;
+  line-height: 1.3;
+  cursor: pointer;
 }
 
-@media (min-width: 640px) { 
+@media (min-width: 640px) {
   .skill-tab-button {
-    font-size: 0.95rem; 
-    padding: 0.65rem 1.75rem;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
   }
   .skill-tabs-container {
     gap: 2rem;
@@ -670,239 +729,297 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .skill-tab-inactive {
-  background-color: transparent; 
-  color: #94a3b8; 
+  background-color: transparent;
+  color: #a0aec0;
 }
 
 .skill-tab-inactive:hover {
-  background-color: rgba(255, 255, 255, 0.1); 
-  color: #cbd5e1; 
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
 }
 
 .skill-tab-active {
-  background-color: #0ea5e9; 
-  color: #ffffff; 
-  box-shadow: 0 4px 10px 0 rgba(14, 165, 233, 0.3); 
+  background-color: #0ea5e9;
+  color: #ffffff;
+  box-shadow: 0 5px 15px -3px rgba(14, 165, 233, 0.4), 0 3px 8px -3px rgba(14, 165, 233, 0.3);
 }
 .skill-tab-active:hover {
-    background-color: #0284c7; 
+    background-color: #0284c7;
 }
 
+/* Software Skill Card Styling */
 .software-skill-card {
-  background-color: #ffffff; 
-  color: #334155;           
-  border-radius: 0.75rem;    
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;    
-  box-shadow: 0 6px 10px -3px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05); 
-  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
-  min-height: 220px;
+  background-color: #2a394e; 
+  color: #cbd5e1; 
+  border-radius: 0.85rem;
+  padding: 1rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 8px 16px -4px rgba(0,0,0,0.3), 0 4px 6px -3px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   width: 100%;
   font-family: 'Centra', sans-serif;
+  border: 1px solid #3b4a5f; 
 }
 
 .software-skill-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 18px -5px rgba(0, 0, 0, 0.1), 0 5px 7px -6px rgba(0, 0, 0, 0.07);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 14px 25px -6px rgba(0,0,0,0.35), 0 8px 10px -7px rgba(0,0,0,0.25);
 }
 
-.software-skill-card .card-header { 
+.software-skill-card .card-header {
   display: flex;
   align-items: center; 
-  margin-bottom: 0.65rem; 
+  margin-bottom: 0.85rem;
 }
 
-.software-skill-card .card-header .icon { 
-  margin-right: 0.5rem; 
-  font-size: 1.15rem;
+.software-skill-card .card-header .icon {
+  margin-right: 0.85rem;
   line-height: 1; 
+  flex-shrink: 0;
+  transform: translateY(-5.5px);
 }
 
 .software-skill-card .card-header h3 {
-  font-size: 1.05rem; 
-  font-weight: 700;   
-  color: #1e293b;     
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f0f4f8;
   font-family: 'Centra', sans-serif;
-  line-height: 1.2; 
+  line-height: 1.3;
 }
 
 .software-skill-card hr {
-  border-color: #e2e8f0; 
-  margin-top: 0.4rem; 
-  margin-bottom: 0.65rem; 
+  border-color: #a0b2c0; 
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.software-skill-card ul.software-skill-list { 
+.software-skill-card ul.software-skill-list {
   list-style: none;
-  padding-left: 0; 
+  padding-left: 0;
   font-family: 'Centra', sans-serif;
-  font-weight: 400; 
+  font-weight: 400;
+  flex-grow: 1;
 }
 
 .software-skill-card ul.software-skill-list li {
-  font-size: 0.8rem; 
-  color: #475569;     
-  position: relative;
-  margin-bottom: 0.3rem; 
-  padding-left: 1.1em; 
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #a0b2c0; 
+  margin-bottom: 0.55rem; 
+  display: flex;
+  align-items: center; 
 }
-.software-skill-card ul.software-skill-list li::before { 
-  content: '•';
+
+.software-skill-card ul.software-skill-list li .list-icon {
   color: #0ea5e9; 
-  font-weight: bold;
-  display: inline-block; 
-  position: absolute; 
-  left: 0;
-  top: 0.05em; 
-  font-size: 0.9em; 
+  margin-right: 0.65rem; 
+  flex-shrink: 0;
+  font-size: 1.1em; 
 }
 
-.skill-pill {
-  color: white;
-  font-size: 0.75rem;   
-  font-weight: 500;    
-  padding: 0.4rem 0.9rem;
-  border-radius: 9999px; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  cursor: default;
-  font-family: 'Centra', sans-serif;
-  line-height: 1.2; 
-  text-align: center; 
-}
-
-.skill-pill:hover {
-  transform: translateY(-2px) scale(1.02); 
-}
-
-.hardware-pill {
-  background-color: #0d9488; 
-}
-.hardware-pill:hover {
-  background-color: #0f766e; 
-}
-
+/* Hardware Skills Styling */
 .hardware-skills-container {
-  background-color: #1e293b; 
+  background-color: #1e293b;
   font-family: 'Centra', sans-serif;
-  padding: 1.75rem;
-  border-radius: 0.75rem; 
-  box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.07), 0 3px 5px -2px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  border-radius: 0.85rem;
+  box-shadow: 0 8px 16px -4px rgba(0,0,0,0.3), 0 4px 6px -3px rgba(0,0,0,0.2);
+  border: 1px solid #334155;
 }
 
-.hardware-skills-container h3 {
+.hardware-skills-container .hardware-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.hardware-skills-container .hardware-title-container .icon {
+    margin-right: 0.85rem;
+    font-size: 1.85rem;
+    color: #67e8f9;
+    line-height: 1;
+      transform: translateY(-4px);
+}
+
+.hardware-skills-container .hardware-title-container h3 {
   font-family: 'Centra', sans-serif;
-  font-weight: 700; 
-  color: #e2e8f0; 
-  margin-bottom: 1.75rem;
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: #e2e8f0;
 }
-.hardware-skills-container h3 .icon { 
-  margin-right: 0.75rem;
-  font-size: 1.65rem;
-  color: #67e8f9; 
-  line-height: 1; 
-}
+
 
 .hardware-skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); 
-  gap: 0.65rem; 
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.skill-pill {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  cursor: default;
+  font-family: 'Centra', sans-serif;
+  line-height: 1.3;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.skill-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.hardware-pill {
+  background-color: #0d9488;
+  border-color: #14b8a6;
+}
+.hardware-pill:hover {
+  background-color: #0f766e;
+  border-color: #0d9488;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.section-title h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+.section-title p {
+    font-size: 1.125rem;
+    color: #d1d5db;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width: 640px) {
+    .section-title h2 {
+        font-size: 3rem;
+    }
+    .section-title {
+          margin-bottom: 4rem;
+    }
 }
 
 
 /************ Projects Css ************/
-.projects-section-custom {
-  font-family: 'Centra', sans-serif;
+.project-title {
+  font-family: 'Centra', sans-serif !important; /* Consider if !important is truly needed */
+  font-size: 2.5rem; /* 40px */
+  font-weight: 700;
+  color: #e2e8f0; /* slate-200 */
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem; /* 8px */
 }
 
+/* For project titles INSIDE the cards (if not fully handled by Tailwind) */
+.project-card-custom .project-title-on-card {
+  font-family: 'Centra', sans-serif; /* Or your preferred card title font */
+  /* Other styles like size, weight, color are handled by Tailwind utilities in the JSX */
+}
+
+/* For tags on the project cards */
+.project-tag {
+  display: inline-block;
+  background-color: #4B0082; /* Example: Indigo/Deep Purple */
+  color: white;
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  padding: 0.35rem 0.9rem;
+  margin-right: 0.5rem; /* mr-2 */
+  margin-bottom: 0.5rem; /* mb-2 */
+  border-radius: 0.375rem; /* rounded-md */
+  text-transform: capitalize; /* Optional */
+  transition: background-color 0.2s ease-in-out;
+  font-family: 'Centra', sans-serif; /* Example font */
+}
+.project-tag:hover {
+  background-color: #5A009D; /* Lighter shade for hover */
+}
+
+.project-tag-more {
+  display: inline-block;
+  background-color: #374151; /* gray-700 */
+  color: #9ca3af; /* gray-400 */
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35rem 0.9rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.375rem;
+  font-family: 'Centra', sans-serif; /* Example font */
+}
+
+/* For tags inside the modal */
+.project-tag-modal {
+  display: inline-block;
+  background-color: #374151; /* gray-700 */
+  color: #d1d5db; /* gray-300 */
+  font-size: 0.8rem; 
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  margin-right: 0.6rem;
+  margin-bottom: 0.6rem;
+  border-radius: 0.375rem; /* rounded-md */
+  font-family: 'Centra', sans-serif; /* Example font */
+  transition: background-color 0.2s ease-in-out;
+}
+.project-tag-modal:hover {
+    background-color: #4b5563; /* gray-600 */
+}
+
+/* For View Live/View Code buttons inside the modal */
+.project-link-button-modal {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500; 
+  padding: 0.6rem 1.25rem; 
+  border-radius: 0.375rem; /* rounded-md */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  font-family: 'Centra', sans-serif; /* Example font */
+  background-color: #4A5568; /* gray-600 */
+  color: #E2E8F0; /* slate-200 */
+}
+.project-link-button-modal:hover {
+  background-color: #2D3748; /* gray-800 (adjust for contrast with gray-700 text) */
+  color: #FFFFFF; /* white */
+}
+
+/* Your existing .project-card-custom styles for hover effects, etc. */
 .project-card-custom {
-  background-color: #1f2937;
+  /* background-color is bg-gray-800 from Tailwind */
   display: flex;
   flex-direction: column;
   height: 100%; 
-  border-radius: 0.75rem; 
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-  overflow: hidden; 
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  /* rounded-xl, shadow-xl, overflow-hidden are from Tailwind */
+  /* transition for hover effects is also handled by Tailwind utilities like hover:shadow-2xl hover:-translate-y-1.5 */
 }
-.project-card-custom:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15), 0 8px 10px -6px rgba(0,0,0,0.1);
+/* If you have specific transitions not covered by Tailwind utilities: */
+/*
+.project-card-custom {
+  transition-property: transform, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
 }
-
-
-.project-card-custom .project-image-container {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%;
-}
-.project-card-custom .project-image-container img {
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
-}
-
-.project-card-custom .project-content {
-  flex-grow: 1; 
-  padding: 1.75rem; 
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card-custom .project-title {
-  color: #e5e7eb; 
-  font-size: 1.5rem; 
-  font-weight: 600; 
-  margin-bottom: 0.75rem;
-  font-family: 'Centra', sans-serif; 
-}
+*/
 
 .project-card-custom .project-description {
-  font-size: 0.875rem;
-  line-height: 1.65; 
-  color: #d1d5db;
-  margin-bottom: 1rem; 
-  flex-grow: 1;
-  font-family: 'Centra', sans-serif; 
+  font-family: 'Centra', sans-serif; /* Or your preferred body font for cards */
+  /* Other properties like size, color, line-height are from Tailwind */
 }
-.project-tags-container {
-  margin-top: auto; 
-  padding-top: 1rem; 
-  
-}
-
-.project-tag {
-  display: inline-block;
-  background-color: #4B0082; 
-  color: white;
-  font-size: 0.75rem; 
-  font-weight: 500; 
-  padding: 0.35rem 0.9rem; 
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.375rem; 
-  text-transform: capitalize; 
-  transition: background-color 0.2s ease-in-out;
-  font-family: 'Centra', sans-serif; 
-}
-
-.project-tag:hover {
-  background-color: #5A009D; 
-}
-
-.project-links {
-
-}
-
-.project-link-button {
-  font-size: 0.8rem;
-  padding: 0.5rem 1rem; 
-  font-weight: 500; 
-  font-family: 'Centra', sans-serif; 
-
-}
-
 
 /************ Contact Css ************/
 .contact-section-custom {
@@ -984,10 +1101,6 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   background-repeat: no-repeat;
 
   color: #011c27; 
-}
-
-.footer-custom .container {
-
 }
 
 .footer-custom p {
