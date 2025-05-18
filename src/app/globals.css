@@ -560,18 +560,18 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
 .about-me .resume-button {
   font-weight: 600;
-  color: #FFFFFF; /* Changed text color for better contrast with a darker button */
-  background-color: #007B8A; /* Darker button color */
-  border: 2px solid #007B8A; /* Darker border color */
+  color: #FFFFFF; 
+  background-color: #007B8A; 
+  border: 2px solid #007B8A;
   padding: 14px 35px;
   font-size: 17px;
-  border-radius: 15px; /* Changed for a round rectangular shape */
+  border-radius: 15px; 
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 123, 138, 0.35); /* Adjusted shadow to match new darker color */
+  box-shadow: 0 4px 10px rgba(0, 123, 138, 0.35); 
 }
 
 .about-me .resume-button .resume-button-icon {
@@ -580,35 +580,34 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .about-me .resume-button:hover {
-  background-color: #005F6B; /* Darker hover background color */
-  border-color: #005F6B; /* Darker hover border color */
-  color: #E0E0E0; /* Slightly adjusted hover text color if needed */
+  background-color: #005F6B; 
+  border-color: #005F6B; 
+  color: #E0E0E0;
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 6px 18px rgba(0, 95, 107, 0.5); /* Adjusted hover shadow to match new darker color */
+  box-shadow: 0 6px 18px rgba(0, 95, 107, 0.5);
 }
 
 .about-me .resume-button:hover .resume-button-icon {
-  transform: scale(1.1) translateX(-2px); /* Icon subtle animation */
+  transform: scale(1.1) translateX(-2px); 
 }
 
-/* Responsive Adjustments */
-@media (max-width: 991px) { /* Target tablets and below */
+@media (max-width: 991px) { 
   .about-me .about-text-col {
-    text-align: center; /* Center text when stacked */
-    margin-top: 20px; /* Add space above text when stacked below image */
+    text-align: center; 
+    margin-top: 20px; 
   }
   .about-me .about-image-col img,
   .about-me .about-image-col .img-fluid {
-    max-width: 70%; /* Allow image to be a bit larger on tablets */
+    max-width: 70%;
   }
 }
 
 
-@media (max-width: 767px) { /* Target mobile devices */
+@media (max-width: 767px) { 
   .about-me {
     padding-top: 60px;
     padding-bottom: 60px;
-    min-height: 0; /* Allow section to shrink on mobile */
+    min-height: 0; 
   }
   .about-me .section-title {
     font-size: 26px;
@@ -616,25 +615,24 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
   .about-me .about-row {
     margin-bottom: 30px;
-    text-align: center; /* Ensure text below image is centered */
+    text-align: center; 
   }
   .about-me .about-image-col {
-    margin-bottom: 20px; /* Space between image and text when stacked */
+    margin-bottom: 20px; 
   }
    .about-me .about-image-col img,
   .about-me .about-image-col .img-fluid {
-    max-width: 80%; /* Image width on mobile */
-    /* Or use 100% if you want it to span the centered column fully */
+    max-width: 80%; 
   }
   .about-me .about-text-col {
-    padding-left: 10px;  /* Reduced padding for mobile */
-    padding-right: 10px; /* Reduced padding for mobile */
-    margin-top: 15px; /* Reset margin-top if image is first */
+    padding-left: 10px;  
+    padding-right: 10px; 
+    margin-top: 15px; 
   }
-   .about-me .about-row .order-md-2 + .order-md-1 .about-text-col { /* Text column that comes first on mobile due to reordering */
+   .about-me .about-row .order-md-2 + .order-md-1 .about-text-col { 
      margin-top: 0;
    }
-   .about-me .about-row .order-md-1 + .order-md-2 .about-text-col { /* Text column that comes first on mobile due to reordering */
+   .about-me .about-row .order-md-1 + .order-md-2 .about-text-col { 
      margin-top: 0;
    }
 
@@ -656,6 +654,25 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 .creative-text {
   font-family: 'Press Start 2P', cursive; 
   color: #a7f3d0; 
+}
+
+@keyframes fadeInOnTabSwitch {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.tab-item-fade-in {
+  opacity: 0; 
+  animation-name: fadeInOnTabSwitch;
+  animation-duration: 0.5s; 
+  animation-fill-mode: forwards; 
+  animation-timing-function: ease-out;
 }
 
 /************ Skills Css ************/
