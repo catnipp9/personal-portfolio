@@ -194,9 +194,9 @@ export const Projects = () => {
             }`}
           >
             <h2 className="project-title">My Projects</h2> 
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-5">
-              A selection of projects I've worked on, showcasing my skills and interests.
-            </p>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-5">
+                A selection of projects I&apos;ve worked on, showcasing my skills and interests.
+              </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
