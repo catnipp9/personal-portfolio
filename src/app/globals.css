@@ -114,16 +114,13 @@ nav.navbar {
   transition: 0.32s ease-in-out;
 }
 nav.navbar.scrolled {
-  padding: 8px 0; /* Tailwind py-2 is approx 8px. Match this or manage padding solely with Tailwind. */
+  padding: 8px 0; 
   background-color: #011c27 ;
 }
 
-/* MODIFIED: Ensure the anchor tag can accommodate the image size */
 nav.navbar a.navbar-brand {
-  /* width: auto; /* This is usually fine, but let's ensure display allows content to size it */
-  display: inline-block; /* Helps the anchor wrap its content (the image) */
-  vertical-align: middle; /* Good for inline-block elements if alignment issues arise */
-  /* You can also try display: flex; align-items: center; justify-content: center; */
+  display: inline-block; 
+  vertical-align: middle; 
 }
 
 nav.navbar .navbar-nav .nav-link.navbar-link {
@@ -153,45 +150,35 @@ nav.navbar .navbar-nav .nav-link.navbar-link::after {
 
 nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link:hover {
     opacity: 1;
-    color: #011c27 !important;
+    color: #011c27 !important; 
 }
 nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link:hover::after {
     width: calc(100% - 50px);
-    background: #011c27;
+    background: #011c27; 
 }
 nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link.active {
     opacity: 1;
-    color: #011c27 !important;
+    color: #011c27 !important; 
     font-weight: 700;
 }
 nav.navbar:not(.scrolled) .navbar-nav a.nav-link.navbar-link.active::after {
     width: calc(100% - 50px);
-    background: #011c27;
+    background: #011c27; 
 }
-
-nav.navbar.scrolled .navbar-nav .nav-link.navbar-link,
-#navbarSupportedContent .navbar-nav .nav-link.navbar-link {
-  color: #f0f0f0 !important;
+nav.navbar.scrolled .navbar-nav .nav-link.navbar-link {
+  color: #f0f0f0 !important; 
   opacity: 0.85;
 }
 nav.navbar.scrolled .navbar-nav .nav-link.navbar-link:hover,
-nav.navbar.scrolled .navbar-nav .nav-link.navbar-link.active,
-#navbarSupportedContent .navbar-nav .nav-link.navbar-link:hover,
-#navbarSupportedContent .navbar-nav .nav-link.navbar-link.active {
-  color: #FBE4D8 !important;
+nav.navbar.scrolled .navbar-nav .nav-link.navbar-link.active {
+  color: #FBE4D8 !important; 
   opacity: 1;
   font-weight: 700;
 }
 nav.navbar.scrolled .navbar-nav .nav-link.navbar-link:hover::after,
-nav.navbar.scrolled .navbar-nav .nav-link.navbar-link.active::after,
-#navbarSupportedContent .navbar-nav .nav-link.navbar-link:hover::after,
-#navbarSupportedContent .navbar-nav .nav-link.navbar-link.active::after {
-  background: #FBE4D8;
+nav.navbar.scrolled .navbar-nav .nav-link.navbar-link.active::after {
+  background: #FBE4D8; 
   width: calc(100% - 50px);
-}
-#navbarSupportedContent .navbar-nav .nav-link.navbar-link {
-  padding-top: 8px;
-  padding-bottom: 8px;
 }
 
 span.navbar-text {
@@ -214,10 +201,10 @@ span.navbar-text {
     line-height: 1;
     border: 1px solid #011c27;
     position: relative;
+    overflow: hidden; 
 }
-nav.navbar.scrolled .social-icon a,
-#navbarSupportedContent .social-icon a {
-  border-color: #aaa;
+nav.navbar.scrolled .social-icon a {
+  border-color: #aaa; 
   background: rgba(255, 255, 255, 0.05);
 }
 .social-icon a::before {
@@ -247,9 +234,9 @@ nav.navbar.scrolled .social-icon a,
 }
 
 .social-icon a img {
-  width: 50%;
+  width: 50%; 
   height: auto;
-  z-index: 1;
+  z-index: 1; 
   transition: 0.3s ease-in-out;
 }
 
@@ -260,10 +247,79 @@ nav.navbar.scrolled .social-icon a,
 nav.navbar.scrolled .social-icon a img {
     filter: brightness(0) invert(1);
 }
-#navbarSupportedContent .social-icon a img {
-    filter: brightness(0) invert(1);
+
+
+/************CSS FOR MOBILE MODAL ************/
+#mobileMenuModal .navbar-nav .mobile-nav-item {
+  color: #cccccc !important; 
+  opacity: 0.85;
+  font-weight: 500; 
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
+#mobileMenuModal .navbar-nav .mobile-nav-item:hover {
+  color: #ffffff !important; 
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.08); 
+}
+
+#mobileMenuModal .navbar-nav .mobile-nav-item.active {
+  color: #FBE4D8 !important; 
+  background-color: rgba(251, 228, 216, 0.15); 
+  opacity: 1;
+  font-weight: 600; 
+}
+
+#mobileMenuModal .social-icon a {
+  border: 1px solid #4a5568;
+  background: rgba(255, 255, 255, 0.03); 
+}
+
+#mobileMenuModal .social-icon a img {
+
+  filter: brightness(0) invert(1) opacity(0.75); 
+  width: 50%; 
+  object-fit: contain;
+  transition: filter 0.3s ease-in-out;
+}
+
+#mobileMenuModal .social-icon a:hover img {
+  filter: brightness(0) invert(1) opacity(1);
+}
+
+
+#mobileMenuModal .social-icon a.social-facebook:hover::before {
+  background-color: #1877F2;
+}
+#mobileMenuModal .social-icon a.social-linkedin:hover::before {
+  background-color: #0A66C2;
+}
+#mobileMenuModal .social-icon a.social-gmail:hover::before {
+  background-color: #EA4335;
+}
+
+#mobileMenuModal .social-icon a::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out;
+    z-index: 0; 
+}
+#mobileMenuModal .social-icon a:hover::before {
+    transform: scale(1);
+}
+
+.no-focus-ring:focus,
+.no-focus-ring:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: transparent !important; /* Or 'none !important' if you want to remove border width too */
+}
 
 
 /* === Banner CSS === */
