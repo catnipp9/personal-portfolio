@@ -313,12 +313,11 @@ nav.navbar.scrolled .social-icon a img {
 #mobileMenuModal .social-icon a:hover::before {
     transform: scale(1);
 }
-
 .no-focus-ring:focus,
 .no-focus-ring:focus-visible {
   outline: none !important;
   box-shadow: none !important;
-  border: transparent !important; /* Or 'none !important' if you want to remove border width too */
+  border: transparent !important; 
 }
 
 
@@ -985,109 +984,91 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
 /************ Projects Css ************/
 .project-title {
-  font-family: 'Centra', sans-serif !important; /* Consider if !important is truly needed */
-  font-size: 2.5rem; /* 40px */
+  font-family: 'Centra', sans-serif !important; 
+  font-size: 2.5rem; 
   font-weight: 700;
-  color: #e2e8f0; /* slate-200 */
+  color: #e2e8f0; 
   letter-spacing: 1.5px;
-  margin-bottom: 0.5rem; /* 8px */
+  margin-bottom: 0.5rem; 
 }
 
-/* For project titles INSIDE the cards (if not fully handled by Tailwind) */
 .project-card-custom .project-title-on-card {
-  font-family: 'Centra', sans-serif; /* Or your preferred card title font */
-  /* Other styles like size, weight, color are handled by Tailwind utilities in the JSX */
+  font-family: 'Centra', sans-serif; 
 }
 
-/* For tags on the project cards */
 .project-tag {
   display: inline-block;
-  background-color: #4B0082; /* Example: Indigo/Deep Purple */
+  background-color: #4B0082; 
   color: white;
-  font-size: 0.75rem; /* 12px */
+  font-size: 0.75rem; 
   font-weight: 500;
   padding: 0.35rem 0.9rem;
-  margin-right: 0.5rem; /* mr-2 */
-  margin-bottom: 0.5rem; /* mb-2 */
-  border-radius: 0.375rem; /* rounded-md */
-  text-transform: capitalize; /* Optional */
+  margin-right: 0.5rem; 
+  margin-bottom: 0.5rem;
+  border-radius: 0.375rem; 
+  text-transform: capitalize; 
   transition: background-color 0.2s ease-in-out;
-  font-family: 'Centra', sans-serif; /* Example font */
+  font-family: 'Centra', sans-serif; 
 }
 .project-tag:hover {
-  background-color: #5A009D; /* Lighter shade for hover */
+  background-color: #5A009D; 
 }
 
 .project-tag-more {
   display: inline-block;
-  background-color: #374151; /* gray-700 */
-  color: #9ca3af; /* gray-400 */
+  background-color: #374151; 
+  color: #9ca3af; 
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.35rem 0.9rem;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 0.375rem;
-  font-family: 'Centra', sans-serif; /* Example font */
+  font-family: 'Centra', sans-serif; 
 }
 
-/* For tags inside the modal */
 .project-tag-modal {
   display: inline-block;
-  background-color: #374151; /* gray-700 */
-  color: #d1d5db; /* gray-300 */
+  background-color: #374151; 
+  color: #d1d5db;
   font-size: 0.8rem; 
   font-weight: 500;
   padding: 0.4rem 1rem;
   margin-right: 0.6rem;
   margin-bottom: 0.6rem;
-  border-radius: 0.375rem; /* rounded-md */
-  font-family: 'Centra', sans-serif; /* Example font */
+  border-radius: 0.375rem; 
+  font-family: 'Centra', sans-serif; 
   transition: background-color 0.2s ease-in-out;
 }
 .project-tag-modal:hover {
-    background-color: #4b5563; /* gray-600 */
+    background-color: #4b5563; 
 }
 
-/* For View Live/View Code buttons inside the modal */
 .project-link-button-modal {
   display: inline-block;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500; 
   padding: 0.6rem 1.25rem; 
-  border-radius: 0.375rem; /* rounded-md */
+  border-radius: 0.375rem; 
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  font-family: 'Centra', sans-serif; /* Example font */
-  background-color: #4A5568; /* gray-600 */
-  color: #E2E8F0; /* slate-200 */
+  font-family: 'Centra', sans-serif; 
+  background-color: #4A5568; 
+  color: #E2E8F0; 
 }
 .project-link-button-modal:hover {
-  background-color: #2D3748; /* gray-800 (adjust for contrast with gray-700 text) */
-  color: #FFFFFF; /* white */
+  background-color: #2D3748; 
+  color: #FFFFFF;
 }
 
-/* Your existing .project-card-custom styles for hover effects, etc. */
 .project-card-custom {
-  /* background-color is bg-gray-800 from Tailwind */
   display: flex;
   flex-direction: column;
   height: 100%; 
-  /* rounded-xl, shadow-xl, overflow-hidden are from Tailwind */
-  /* transition for hover effects is also handled by Tailwind utilities like hover:shadow-2xl hover:-translate-y-1.5 */
-}
-/* If you have specific transitions not covered by Tailwind utilities: */
-/*
-.project-card-custom {
-  transition-property: transform, box-shadow;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
-}
-*/
 
+}
 .project-card-custom .project-description {
-  font-family: 'Centra', sans-serif; /* Or your preferred body font for cards */
-  /* Other properties like size, color, line-height are from Tailwind */
+  font-family: 'Centra', sans-serif; 
 }
 
 /************ Contact Css ************/
@@ -1151,6 +1132,25 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   cursor: not-allowed;
 }
 
+.contact-info-card-container {
+  background-color: #1E293B; 
+  padding: 1.25rem;
+  border-radius: 0.75rem; 
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1); 
+  border: 1px solid #334155;
+  color: #e5e7eb;
+}
+
+.contact-info-card-container a {
+  text-decoration: none; 
+  color: #9ca3af; 
+  transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out; 
+}
+
+.contact-info-card-container a:hover {
+  text-decoration: underline; 
+  color: #67e8f9; 
+}
 
 /************ Footer Css ************/
 .footer-custom {
