@@ -35,7 +35,7 @@ const hardwareSkillsData = {
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('software');
-  const [animationTriggerKey, setAnimationTriggerKey] = useState(0); 
+  const [animationTriggerKey, setAnimationTriggerKey] = useState(0);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -65,12 +65,19 @@ export const Skills = () => {
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
-    setAnimationTriggerKey(prevKey => prevKey + 1); 
+    setAnimationTriggerKey(prevKey => prevKey + 1);
   };
 
   const animationBase = "transition-all duration-700 ease-out transform";
   const animationInitial = "opacity-0 translate-y-12 scale-90";
   const animationVisible = "opacity-100 translate-y-0 scale-100";
+
+  const softwareCardClasses = `
+    software-skill-card tab-item-fade-in
+    hover:scale-105 hover:shadow-xl
+    transition-transform transition-shadow duration-300 ease-in-out
+    cursor-pointer
+  `;
 
   return (
     <section
@@ -112,8 +119,8 @@ export const Skills = () => {
               <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-10`}>
                 {softwareSkillGroups.slice(0, 3).map((group, groupIndex) => (
                   <div
-                    key={group.groupTitle} 
-                    className={`software-skill-card tab-item-fade-in`} 
+                    key={group.groupTitle}
+                    className={softwareCardClasses.trim()}
                     style={{ animationDelay: `${groupIndex * 100}ms` }}
                   >
                     <div className="card-header">
@@ -134,11 +141,11 @@ export const Skills = () => {
               </div>
               {softwareSkillGroups.length > 3 && (
                 <div className={`flex justify-center mt-6 md:mt-8`}>
-                  <div className="w-full sm:w-2/3 md:w-1/2 lg:w-[calc(33.3333%-1rem)]"> 
+                  <div className="w-full sm:w-2/3 md:w-1/2 lg:w-[calc(33.3333%-1rem)]">
                     <div
-                      key={softwareSkillGroups[3].groupTitle} 
-                      className="software-skill-card tab-item-fade-in" 
-                      style={{ animationDelay: `${3 * 100}ms` }} 
+                      key={softwareSkillGroups[3].groupTitle}
+                      className={softwareCardClasses.trim()} 
+                      style={{ animationDelay: `${3 * 100}ms` }}
                     >
                       <div className="card-header">
                         {softwareSkillGroups[3].icon}
@@ -164,9 +171,9 @@ export const Skills = () => {
             <div
               key={`hardware-content-${animationTriggerKey}`}
               className={`hardware-skills-container p-6 md:p-8 ${animationBase} ${
-                isVisible ? `${animationVisible} delay-200` : animationInitial 
+                isVisible ? `${animationVisible} delay-200` : animationInitial
               }`}
-              style={{ transitionDelay: isVisible ? `200ms` : '0ms' }} 
+              style={{ transitionDelay: isVisible ? `200ms` : '0ms' }}
             >
               <div className="hardware-title-container">
                 {hardwareSkillsData.icon}
@@ -175,9 +182,9 @@ export const Skills = () => {
               <div className="hardware-skills-grid">
                 {hardwareSkillsData.items.map((skill, index) => (
                   <span
-                    key={skill} 
-                    className={`skill-pill hardware-pill tab-item-fade-in`} 
-                    style={{ animationDelay: `${index * 50}ms` }} 
+                    key={skill}
+                    className={`skill-pill hardware-pill tab-item-fade-in`}
+                    style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {skill}
                   </span>
