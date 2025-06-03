@@ -1,23 +1,24 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react'; // Import icons
+import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
+    phone: '',
     message: ''
   });
   const [statusMessage, setStatusMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); 
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
   const contactDetails = {
-    email: "hadjirasuljamel80@gmail.com",
+    email: "hadjirasuljamel80@gmail.com", 
     phone: "+63 993 1468 969",
-    location: "Poblacion Ward 2 Minglanilla, Cebu", 
+    location: "Poblacion Ward 2 Minglanilla, Cebu",
     linkedin: "https://www.linkedin.com/in/jamel-hadjirasul-886a3a2a4/",
     github: "https://github.com/catnipp9"
   };
@@ -31,7 +32,7 @@ export const Contact = () => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 } 
+      { threshold: 0.1 }
     );
 
     const currentSectionRef = sectionRef.current;
@@ -58,18 +59,38 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setStatusMessage('');
+    setStatusMessage(''); 
 
-    console.log("Form Data Submitted: ", formData);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('http://localhost:5000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
-    setStatusMessage("Message sent successfully! I'll get back to you soon.");
-    setFormData({ fullName: '', email: '', message: '' });
-    setIsSubmitting(false);
+      const result = await response.json();
 
-    setTimeout(() => setStatusMessage(''), 5000);
+      if (response.ok && result.code === 200) {
+        setStatusMessage('Message sent successfully! I\'ll get back to you soon.');
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        setStatusMessage(result.status || 'Failed to send message. Please try again later.');
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setStatusMessage('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setStatusMessage(''), 7000); 
+    }
   };
-
 
   const animationBase = "transition-all duration-1000 ease-out";
   const animationInitial = "opacity-0 translate-y-10";
@@ -77,12 +98,11 @@ export const Contact = () => {
 
   return (
     <section
-      className="contact-section-custom skills-section-custom bg-gray-900 text-gray-100 font-sans" // Added background and default text color for better preview
+      className="contact-section-custom skills-section-custom bg-gray-900 text-gray-100 font-sans"
       id="connect"
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 py-16 md:py-20">
-        {/* Section Header */}
         <div
           className={`text-center mb-12 md:mb-16 ${animationBase} ${
             isVisible ? animationVisible : animationInitial
@@ -90,26 +110,22 @@ export const Contact = () => {
         >
           <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">Get In Touch</h2>
           <p className="text-lg text-gray-400 max-w-xl mx-auto">
-             Have a question, a job offer, or just want to say hi? Feel free to reach out!
+            Have a question, a job offer, or just want to say hi? Feel free to reach out!
           </p>
         </div>
 
-        {/* Main Grid: Contact Info Cards (Left) and Form (Right) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
-
-          {/* Column 1: Stacked Contact Info Cards */}
           <div
-            className={`space-y-8 ${animationBase} ${ 
+            className={`space-y-8 ${animationBase} ${
               isVisible ? `${animationVisible} delay-200` : animationInitial
             }`}
           >
             {/* Email Card */}
-            <div className="contact-info-card-container p-6 bg-gray-800 rounded-lg shadow-lg"> 
+            <div className="contact-info-card-container p-6 bg-gray-800 rounded-lg shadow-lg">
               <h3 className="text-xl font-semibold text-white mb-2 flex items-center gap-3">
-                <Mail size={24} className="text-sky-400 flex-shrink-0" /> 
+                <Mail size={24} className="text-sky-400 flex-shrink-0" />
                 Email
               </h3>
-              {/* Displaying email as text, not a link */}
               <span className="text-gray-300 break-all block">
                 {contactDetails.email}
               </span>
@@ -118,7 +134,7 @@ export const Contact = () => {
             {/* Phone Card */}
             <div className="contact-info-card-container p-6 bg-gray-800 rounded-lg shadow-lg">
               <h3 className="text-xl font-semibold text-white mb-2 flex items-center  gap-3">
-                <Phone size={24} className="text-sky-400 flex-shrink-0" /> 
+                <Phone size={24} className="text-sky-400 flex-shrink-0" />
                 Phone
               </h3>
               <span className="text-gray-300 block">
@@ -129,7 +145,7 @@ export const Contact = () => {
             {/* Location Card */}
             <div className="contact-info-card-container p-6 bg-gray-800 rounded-lg shadow-lg">
               <h3 className="text-xl font-semibold text-white mb-2 flex items-center gap-3">
-                <MapPin size={24} className="text-sky-400 flex-shrink-0" /> 
+                <MapPin size={24} className="text-sky-400 flex-shrink-0" />
                 Location
               </h3>
               <span className="text-gray-300 block">{contactDetails.location}</span>
@@ -137,7 +153,7 @@ export const Contact = () => {
 
             {/* Links Card (LinkedIn & GitHub) */}
             <div className="contact-info-card-container p-6 bg-gray-800 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-3"> 
+              <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-3">
                 <Linkedin size={24} className="text-sky-400 flex-shrink-0" />
                 Connect
               </h3>
@@ -148,7 +164,7 @@ export const Contact = () => {
                     href={contactDetails.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-sky-400 transition-colors no-underline \"
+                    className="text-gray-300 hover:text-sky-400 transition-colors no-underline "
                   >
                     GitHub Profile
                   </a>
@@ -167,15 +183,12 @@ export const Contact = () => {
               </ul>
             </div>
           </div>
-
-          {/* Column 2: Contact Form */}
           <div
             className={`${animationBase} ${
               isVisible ? `${animationVisible} delay-400` : animationInitial
             }`}
           >
-            <form onSubmit={handleSubmit} className="contact-form-container space-y-6 p-6 sm:p-8 bg-gray-800 rounded-lg shadow-lg"> {/* Added padding, bg, rounded, shadow for form container */}
-              {/* Full Name Input */}
+            <form onSubmit={handleSubmit} className="contact-form-container space-y-6 p-6 sm:p-8 bg-gray-800 rounded-lg shadow-lg">
               <div>
                 <label htmlFor="fullName" className="block text-sm font-medium mb-1 text-gray-300">
                   Full Name
@@ -187,11 +200,10 @@ export const Contact = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full shadow-sm sm:text-sm bg-gray-700 border-gray-600 rounded-md p-3 text-gray-100 focus:ring-sky-500 focus:border-sky-500" // Added custom input styling
+                  className="mt-1 block w-full shadow-sm sm:text-sm bg-gray-700 border-gray-600 rounded-md p-3 text-gray-100 focus:ring-sky-500 focus:border-sky-500"
                   placeholder="John Doe"
                 />
               </div>
-              {/* Email Input */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-1 text-gray-300">
                   Email Address
@@ -203,11 +215,24 @@ export const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full shadow-sm sm:text-sm bg-gray-700 border-gray-600 rounded-md p-3 text-gray-100 focus:ring-sky-500 focus:border-sky-500" // Added custom input styling
+                  className="mt-1 block w-full shadow-sm sm:text-sm bg-gray-700 border-gray-600 rounded-md p-3 text-gray-100 focus:ring-sky-500 focus:border-sky-500"
                   placeholder="you@example.com"
                 />
               </div>
-              {/* Message Textarea */}
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium mb-1 text-gray-300">
+                  Phone Number (Optional)
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="mt-1 block w-full shadow-sm sm:text-sm bg-gray-700 border-gray-600 rounded-md p-3 text-gray-100 focus:ring-sky-500 focus:border-sky-500"
+                  placeholder="+1 (555) 123-4567"
+                />
+              </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-1 text-gray-300">
                   Message
@@ -219,19 +244,18 @@ export const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full shadow-sm sm:text-sm bg-gray-700 border-gray-600 rounded-md p-3 text-gray-100 focus:ring-sky-500 focus:border-sky-500" // Added custom input styling
+                  className="mt-1 block w-full shadow-sm sm:text-sm bg-gray-700 border-gray-600 rounded-md p-3 text-gray-100 focus:ring-sky-500 focus:border-sky-500"
                   placeholder="Your message here..."
                 />
               </div>
-              {/* Submit Button */}
               <div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-colors duration-300 disabled:opacity-50" // Enhanced button styling
+                  className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-colors duration-300 disabled:opacity-50"
                 >
                   <svg
-                    className="mr-3 h-5 w-5" 
+                    className="mr-3 h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
@@ -243,7 +267,6 @@ export const Contact = () => {
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </div>
-              {/* Status Message Display */}
               {statusMessage && (
                 <p className={`mt-3 text-sm text-center ${statusMessage.toLowerCase().includes('successfully') ? 'text-green-400' : 'text-red-400'}`}>
                   {statusMessage}
