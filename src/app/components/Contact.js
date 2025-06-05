@@ -17,7 +17,7 @@ export const Contact = () => {
 
   const contactDetails = {
     email: "hadjirasuljamel80@gmail.com", 
-    phone: "+63 993 1468 969",
+    phone: "+63 993 1648 969",
     location: "Poblacion Ward 2 Minglanilla, Cebu",
     linkedin: "https://www.linkedin.com/in/jamel-hadjirasul-886a3a2a4/",
     github: "https://github.com/catnipp9"
